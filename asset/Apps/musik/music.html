@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Music Player</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+      integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ=="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/asset/Apps/musik/music.css" />
+  </head>
+  <body>
+
+     <!-- Navbar -->
+     <section class="navbar-section ">
+      <div class="container">
+          <div class="row">
+              <div class="center">
+                  <div class="navigation">
+                      <ul>
+                          <div class="nav center active">
+                              <li class="tab">
+                                  <a href="/index.html">
+                                      <i class="fas fa-home"></i>
+                                      <span>Home</span>
+                                  </a>
+                              </li>
+                          </div>
+                          <div class="nav center">
+                              <li class="tab">
+                                  <a href="/asset/Apps/musik/music.html">
+                                      <i class="fas fa-music"></i>
+                                      <span>Music</span>
+                                  </a>
+                              </li>
+                          </div>
+                          <div class="nav center">
+                              <li class="tab">
+                                  <a href="#">
+                                    <i class="fas fa-robot"></i>
+                                    <span>Chatbot</span>
+                                  </a>
+                              </li>
+                          </div>
+                          <div class="nav center">
+                              <li class="tab">
+                                  <a href="/profil.html">
+                                      <i class="fas fa-user-circle"></i>
+                                      <span>Profil</span>
+                                  </a>
+                              </li>
+                          </div>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+          <div class="main_div">
+            <div class="music_container" data-tilt>
+              <h2 id="title">Celengan Rindu</h2>
+              <h3 id="artist">Fiersa Besari</h3>
+              <div class="img_container">
+                <img src="/asset/Apps/musik/img/music1.jpg" height="250" width="250" alt="" />
+              </div>
+              <audio src="/asset/Apps/musik/music/musik1.mp3"></audio>
+      
+              <!-- controls -->
+              <div class="music_controls">
+                <i class="fas fa-backward" id="prev" title="Previous"></i>
+                <i class="fas fa-play main-button" id="play" title="Play"></i>
+                <i class="fas fa-forward" id="next" title="Next"></i>
+              </div>
+            </div>
+          </div>
+      </div> 
+  </section>
+  <!-- Navbar End -->
+
+
+    <script>
+      const music = document.querySelector("audio");
+      const img = document.querySelector("img");
+      const play = document.getElementById("play");
+      const title = document.getElementById("title");
+      const artist = document.getElementById("artist");
+      const prev = document.getElementById("prev");
+      const next = document.getElementById("next");
+
+      const songs = [
+        {
+          name: "musik1",
+          img: "music1",
+          title: "Celengan Rindu",
+          artist: "Fiersa Besari",
+        },
+        {
+          name: "musik2",
+          img: "music2",
+          title: "Halu",
+          artist: "Feby Putri",
+        },
+        {
+          name: "musik3",
+          img: "music3",
+          title: "Bad Liar",
+          artist: "Image Dragons",
+        },
+        {
+          name: "musik4",
+          img: "music4",
+          title: "Bukti",
+          artist: "Virgoun",
+        },
+        {
+          name: "musik5",
+          img: "music5",
+          title: "Surat Cinta Untuk Starla",
+          artist: "Virgoun",
+        },
+        {
+          name: "musik6",
+          img: "music6",
+          title: "Pamer Bojo",
+          artist: "Didi Kempot",
+        },
+      ];
+
+      let isPlaying = false;
+      const playMusic = () => {
+        music.play();
+        isPlaying = true;
+        play.classList.replace("fa-play", "fa-pause");
+        img.classList.add("anime");
+      };
+
+      const pauseMusic = () => {
+        music.pause();
+        isPlaying = false;
+        play.classList.replace("fa-pause", "fa-play");
+        img.classList.remove("anime");
+      };
+
+      play.addEventListener("click", () => {
+        isPlaying ? pauseMusic() : playMusic();
+      });
+
+      loadSong = (songs) => {
+        title.textContent = songs.title;
+        artist.textContent = songs.artist;
+        music.src = "music/" + songs.name + ".mp3";
+        img.src = "img/" + songs.img + ".jpg";
+      };
+
+      songIndex = 0;
+      const prevSong = () => {
+        songIndex = (songIndex - 1 + songs.length) % songs.length;
+        loadSong(songs[songIndex]);
+        playMusic();
+      };
+
+      const nextSong = () => {
+        songIndex = (songIndex + 1) % songs.length;
+        loadSong(songs[songIndex]);
+        playMusic();
+      };
+
+      next.addEventListener("click", nextSong);
+      prev.addEventListener("click", prevSong);
+    </script>
+
+    <!-- tilt effect -->
+    <script
+      type="text/javascript"
+      src="node_modules\vanilla-tilt\lib\vanilla-tilt.js"
+    ></script>
+    <script type="text/javascript">
+      VanillaTilt.init(document.querySelector(".music_container"), {
+        max: 25,
+        speed: 400,
+      });
+
+    </script>
+  </body>
+</html>

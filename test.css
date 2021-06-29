@@ -1,0 +1,344 @@
+/* custom-scroll Bar  */
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-track {
+    background-color: #444;
+}
+::-webkit-scrollbar-thumb{
+    background-color: #2d7797;
+}
+
+/* -------------- articel-Section --------------- */
+
+.articel-section {
+    /* background-color: blue; */
+    width: 100%;
+    height: auto;
+    position: relative;
+
+}
+
+.section-title {
+    padding: 0 5px;
+    width: 100%;
+    margin-top: -10px;
+}
+
+.section-title h3 {
+    font-size: 24px;
+    text-transform: capitalize;
+    text-align: center;
+}
+
+.articel-filter {
+    display: flex;
+    justify-content: center;
+    padding: 0 5px;
+    width: 100%;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.articel-filter-btn {
+    padding: 2px 5px;
+    font-size: 14px;
+    border: none;
+    padding: 5px;
+    margin: 8px;
+    border-radius: 8px;
+    background-color: #f4f4f4;
+    text-transform: capitalize;
+    display: inline-block;
+    cursor: pointer;
+}
+.articel-filter-btn.active{
+    background-color: rgb(189, 163, 15);
+    color: white;
+    cursor: auto;
+}
+.filter-status {
+    position: absolute;
+    background-color: #f4f4f4;
+    left: 0;
+    top: 0;
+    height: 538px;
+    width: 100%;
+    z-index: 201;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s ease 0.2s;
+}
+.filter-status.active {
+    visibility: visible;
+    opacity: 1;
+    transition-delay: 0s;
+}
+.filter-status p {
+    font-size: 20px;
+    text-transform: capitalize;
+    color: #111;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.filter-status.active p {
+    opacity: 1;
+}
+.filter-status p span {
+    font-weight: 600;
+}
+
+
+/* articel  */
+.articel-item {
+    width: calc((100% / 2) - 20px);
+    margin: 5px 10px 15px;
+    cursor: pointer;
+    display: none; /* 2. setalah itu tambahkan ini */
+}
+.articel-item.show {
+    display: block; /* 3. dan ini*/
+}
+
+.articel-item-thumbnail {
+    position: relative;
+    background-color: #Fff;
+    border-radius: 10px;
+    padding: 8px;
+} 
+/* .articel-item-thumbnail::before,
+.articel-item-thumbnail::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    background-color: #eaeaea;
+    opacity: 0.8;
+    transition: height 0.3s ease;
+}
+.articel-item-thumbnail::before {
+    top: 0;
+}
+.articel-item-thumbnail::after {
+    bottom: 0;
+}
+.articel-item:hover .articel-item-thumbnail::before,
+.articel-item:hover .articel-item-thumbnail::after {
+    height: 50%;
+} */
+
+.articel-item-thumbnail .btn {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    transform: translate(-50%,-50%);
+    transition: all .4s;
+    opacity: 0;
+}
+
+.articel-item-thumbnail:hover .btn {
+    background-color: gold;
+    opacity: 1;
+}
+
+.articel-item img {
+    width: 100%;
+    height: 120px;
+    border-radius: 10px;
+}
+.articel-item h3 {
+    font-size: 18px;
+    padding: 8px;
+    margin: 5px 0 5px;
+}
+
+
+.articel-item-details {
+    display: none;
+}
+
+
+/* ------------ Articel Popup ------------ */
+.articel-popup {
+    position: relative;
+    left: 0;
+    top: -97%;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    overflow-y: hidden;
+     visibility: hidden; /* 1. pake ginian ternyata  */
+}
+
+.articel-popup.open{ /* lalu untuk setelah bagian js articel pop selesai lalu buat ini */
+    visibility: visible;
+}
+
+.articel-popup::before,
+.articel-popup::after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 0%;
+    background-color: #f4f4f4;
+    z-index: -1;
+   border-radius: 20px;
+   transition: all 0.5s ease 0.5s;
+}
+.articel-popup::before {
+    top: 0;
+    left: 0;
+}
+.articel-popup::after {
+    right: 0;
+    bottom: 0;
+}
+.articel-popup.open::before,
+.articel-popup.open::after {
+    width: 100%;
+    transition-delay: 0s;
+}
+
+
+.pp-overlay {
+    position: fixed;
+    left: 165px;
+    top: 30px;
+    height: 588px;
+    width: 358px;
+    z-index: 1;
+    visibility: hidden;
+}
+.pp-overlay.prev,
+.pp-overlay.next {
+    visibility: visible;
+}
+.pp-overlay::before  {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #f4f4f4;
+    border-radius: 20px;
+}
+.pp-overlay.next::before  {
+    animation: nextItem 1s ease forwards;
+    opacity: .9;
+}
+@keyframes nextItem {
+    0% {
+        transform: scale(1) rotate(0);
+        opacity: .5;
+    }
+    50% {
+        transform: scale(2) rotate(180deg);
+    }
+    100% {
+        transform: scale(1) rotate(360deg);
+        opacity: 1;
+    }
+}
+.pp-overlay.prev::before {
+    animation: prevItem 1s ease;
+}
+@keyframes prevItem {
+    0% {
+        transform: scale(1) rotate(0);
+        opacity: .5;
+    }
+    50% {
+        transform: scale(2) rotate(180deg);
+    }
+    100% {
+        transform: scale(1) rotate(360deg);
+        opacity: 1;
+    }
+}
+
+.pp-inner {
+    height: 100vh;
+    padding: 0 10px;
+    opacity: 0;
+    transition: all 0.5s ease;
+    transform: translateY(20%);
+}
+.articel-popup.open .pp-inner {
+    opacity: 1;
+    transition-delay: 0.5s;
+    transform: translateY(0%);
+    overflow-y: auto;
+}
+
+.pp-content{
+    max-width: 450px;
+    margin: 15px auto;
+}
+.pp-header {
+    position: relative;
+}
+.pp-header h2 {
+    font-size: 18px;
+    text-transform: capitalize;
+    margin: 0 0 5px;
+}
+.pp-header h2 span {
+    font-weight: 300;
+}
+.pp-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.pp-header h3 {
+    font-size: 24px;
+    text-transform: capitalize;
+}
+
+.pp-thumbnail {
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+}
+.pp-thumbnail img {
+    width: 200px;
+}
+
+.pp-body {
+    padding: 5px 0;
+}
+
+.pp-body .description {
+    margin: 0 0 30px;
+}
+.pp-body .general-info p {
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+.pp-body .general-info p span {
+    font-weight: 300;
+    margin-left: 5px;
+}
+
+.pp-footer {
+    display: flex;
+    padding: 30px 0 0;
+}
+.pp-footer-left,
+.pp-footer-right {
+    flex: 1;
+}
+.pp-footer-right {
+    text-align: right;
+}
+/* .pp-footer img {
+    max-width: 120px;
+} */

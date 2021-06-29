@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <title>Profil</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <section class="navbar-section ">
+        <div class="container">
+            <div class="row">
+                <div class="center">
+                    <div class="navigation">
+                        <ul>
+                            <div class="nav center active">
+                                <li class="tab">
+                                    <a href="index.html">
+                                        <i class="fas fa-home"></i>
+                                        <span>Home</span>
+                                    </a>
+                                </li>
+                            </div>
+                            <div class="nav center">
+                                <li class="tab">
+                                    <a href="/asset/Apps/musik/music.html">
+                                        <i class="fas fa-music"></i>
+                                        <span>Music</span>
+                                    </a>
+                                </li>
+                            </div>
+                            <div class="nav center">
+                                <li class="tab">
+                                    <a href="#">
+                                        <i class="fas fa-robot"></i>
+                                        <span>Chatbot</span>
+                                    </a>
+                                </li>
+                            </div>
+                            <div class="nav center">
+                                <li class="tab">
+                                    <a href="profil.html">
+                                        <i class="fas fa-user-circle"></i>
+                                        <span>Profil</span>
+                                    </a>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+         <!-- Profil Page  -->
+ <div class="profil-section center">
+    <div class="row">
+        <div class="section-kotak center">
+            <img src="/asset/img/tyoo.jpg" class="profil" alt="Profil">
+            <div class="title">
+                <p class="user_name">Muhamad Prasetyo</p>
+                <p class="skill">Web Developer</p>
+            </div>
+            <div class="arr_container center">
+                <i class="fas fa-arrow-right"></i>
+            </div>
+            <div class="left_container off">
+                <p class="p1">Skills</p>
+                <div class="skills">
+                    <div class="kemampuan">Html</div>
+                    <div class="kemampuan">Css</div>
+                    <div class="kemampuan">React</div>
+                    <div class="kemampuan">Vue</div>
+                </div>
+                <div class="icons">
+                    <i class="fab fa-github"></i>
+                    <i class="fab fa-linkedin"></i>
+                    <i class="fab fa-whatsapp"></i>
+                    <i class="fab fa-instagram"></i>
+                </div>
+                <div class="cancel center">
+                    <i class="fas fa-times"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Profil Page End -->
+        </div> 
+    </section>
+    <!-- Navbar End -->
+
+
+
+
+
+<script>
+    // ----------------------Profil_Page-----------------------
+const cancel = document.querySelector(".cancel");
+const arr = document.querySelector(".arr_container");
+const left_container = document.querySelector(".left_container");
+
+arr.addEventListener("click", ()=>{
+    arr.classList.add("active_arr");
+    if(left_container.classList.contains("off")){
+        left_container.classList.remove("off");
+        left_container.classList.add("active");
+    }
+});
+cancel.addEventListener("click", ()=>{
+    arr.classList.remove("active_arr");
+    if(left_container.classList.contains("active")){
+        left_container.classList.remove("active");
+        left_container.classList.add("off");
+    }
+});
+</script>
+</body>
+</html>
+>
